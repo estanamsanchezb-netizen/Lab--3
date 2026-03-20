@@ -193,3 +193,7 @@ for nombre, s, fs in seniales:
 
 ## Parte B
 ## Parte C 
+1. ¿Qué diferencias se observan en la frecuencia fundamental?
+2. ¿Qué otras diferencias notan en términos de brillo, media o intensidad?
+3. Redactar conclusiones sobre el comportamiento de la voz en hombres y mujeres a partir de los análisis realizados.
+4. Discuta la importancia clínica del jitter y shimmer en el análisis de la voz. 
