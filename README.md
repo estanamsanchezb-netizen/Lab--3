@@ -201,6 +201,8 @@ Inicialmente, se seleccionó una grabación de voz masculina y una femenina obte
 
 El código del filtro que se le aplicó a la voz "mujer 1" y a "hombre 1"
 ```
+el codigo del filtro
+```python
 
 
 import numpy as np
@@ -558,6 +560,8 @@ print(tabla_shimmer)
 
 
 
+
+<img width="1089" height="496" alt="image" src="https://github.com/user-attachments/assets/10b06a64-7d03-4b4f-8b16-c04dc2f0cd95" />
 
 
 ## Parte C 
