@@ -245,6 +245,8 @@ plt.show()
 
 ```
 
+<img width="1089" height="496" alt="image" src="https://github.com/user-attachments/assets/10b06a64-7d03-4b4f-8b16-c04dc2f0cd95" />
+
 
 ## Parte C 
 1. ¿Qué diferencias se observan en la frecuencia fundamental?
