@@ -86,5 +86,55 @@ plt.show()
 <img width="953" height="616" alt="image" src="https://github.com/user-attachments/assets/91c5f562-bfea-42d9-b600-a0bee891e0a6" />
 
 **Aplicación de la Transformada de Fourier**
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+seniales = [
+    ("Mujer 1", signal1, fs1),
+    ("Mujer 2", signal2, fs2),
+    ("Mujer 3", signal3, fs3),
+    ("Hombre 1", signal4, fs4),
+    ("Hombre 2", signal5, fs5),
+    ("Hombre 3", signal6, fs6)
+]
+
+# Colores
+color_mujer = "deeppink"
+color_hombre = "darkviolet"
+
+# --- Graficar FFT de cada señal ---
+plt.figure(figsize=(12, 20))
+
+for i, (titulo, señal, fs) in enumerate(seniales, 1):
+
+    N = len(señal)
+    freqs = np.fft.rfftfreq(N, 1/fs)
+    espectro = np.abs(np.fft.rfft(señal))
+
+    # Elegir color según el título
+    if "Mujer" in titulo:
+        color = color_mujer
+    else:
+        color = color_hombre
+
+    plt.subplot(6, 1, i)
+    plt.semilogx(freqs, espectro, color=color, linewidth=1.8)
+    plt.title(titulo)
+    plt.ylabel('Amplitud')
+    plt.grid(True)
+
+    # Limitar el eje X desde 10 Hz
+    plt.xlim(left=10)
+
+plt.xlabel('Frecuencia (Hz)')
+plt.tight_layout()
+plt.show()
+```
+<img width="780" height="616" alt="image" src="https://github.com/user-attachments/assets/64ebffb5-1454-4e14-b980-554866f8832e" />
+
+<img width="829" height="620" alt="image" src="https://github.com/user-attachments/assets/b3422fbb-9ce3-4371-b5d1-0b0a4f12387f" />
+
+
 ## Parte B
 ## Parte C 
