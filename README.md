@@ -411,6 +411,7 @@ print("\nTABLA FINAL")
 print(tabla_final)
 ````
 RESULTADOS:
+<br>
 <img width="663" height="492" alt="image" src="https://github.com/user-attachments/assets/7311365b-1b27-4c3f-b781-02072b201d50" />
 <br>
 <img width="687" height="489" alt="image" src="https://github.com/user-attachments/assets/6d999668-9e32-4684-9a95-7de652a0490d" />
@@ -562,7 +563,16 @@ print("\nTABLA FINAL SHIMMER")
 print(tabla_shimmer)
 ````
 
-RESULTADOS
+RESULTADOS:
+<br>
+<img width="696" height="491" alt="image" src="https://github.com/user-attachments/assets/d1b3e13b-114f-4106-a7a1-d25953bf13b7" />
+<br>
+<img width="700" height="486" alt="image" src="https://github.com/user-attachments/assets/2e4fcd26-01d5-4f3c-9ce9-50367a5e8c72" />
+<br>
+<img width="628" height="496" alt="image" src="https://github.com/user-attachments/assets/4675179d-83fd-46df-ac52-b097e60d7ded" />
+<br>
+<img width="548" height="248" alt="image" src="https://github.com/user-attachments/assets/dd3bf81c-c614-4a49-93d7-971e7d4c8571" />
+
 
 ## Parte C 
 1. ¿Qué diferencias se observan en la frecuencia fundamental?
