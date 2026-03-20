@@ -199,7 +199,7 @@ Inicialmente, se seleccionó una grabación de voz masculina y una femenina obte
 
 <img width="638" height="624" alt="image" src="https://github.com/user-attachments/assets/b945bc4b-07e0-4424-ab68-42757d204d66" />
 
-el codigo del filtro
+El código del filtro que se le aplicó a la voz "mujer 1" y a "hombre 1"
 ```
 
 
@@ -244,6 +244,320 @@ plt.tight_layout()
 plt.show()
 
 ```
+Los resultados:
+
+
+A cada una de las señales se le aplicó jitter  usando una ventana de 15 ms y shimmer usando una ventana de 30 ms.
+
+Codigo con el que se calculo jitter:
+```
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.signal import find_peaks
+
+
+
+inicios_ms = {
+    "Señal 1": 2500,
+    "Señal 2": 5400,
+    "Señal 3": 2100,
+    "Señal 4": 2800,
+    "Señal 5": 5850,
+    "Señal 6": 520
+}
+
+duracion_ms = 15
+
+def calcular_jitter_ventana(signal, fs, t_inicio_ms, duracion_ms=15, titulo="Señal", graficar=True):
+
+
+    n_inicio = int((t_inicio_ms / 1000) * fs)
+    n_fin = int(((t_inicio_ms + duracion_ms) / 1000) * fs)
+
+    if n_inicio < 0 or n_fin > len(signal):
+        return {
+            "Señal": titulo,
+            "Inicio ventana (ms)": t_inicio_ms,
+            "Duración ventana (ms)": duracion_ms,
+            "Número de picos": 0,
+            "Ti (ms)": [],
+            "Periodo medio (ms)": np.nan,
+            "Jitter absoluto (s)": np.nan,
+            "Jitter relativo (%)": np.nan,
+            "Mensaje": "La ventana se sale de la señal"
+        }
+
+    ventana = signal[n_inicio:n_fin]
+    t_ventana_ms = np.arange(len(ventana)) * 1000 / fs
+
+
+    rango_amp = np.max(ventana) - np.min(ventana)
+
+    # Distancia mínima entre picos:
+    # evita detectar varios picos dentro del mismo ciclo
+    distancia_min_ms = 4.5
+    distancia_min_muestras = int((distancia_min_ms / 1000) * fs)
+
+    # Prominencia mínima:
+    # evita picos pequeños o falsos
+    prominencia_min = 0.20 * rango_amp
+
+    # Altura mínima:
+    # evita máximos muy bajos
+    altura_min = np.mean(ventana)
+
+    peaks, props = find_peaks(
+        ventana,
+        distance=distancia_min_muestras,
+        prominence=prominencia_min,
+        height=altura_min
+    )
+
+   
+    if len(peaks) < 3:
+        if graficar:
+            plt.figure(figsize=(10, 4))
+            plt.plot(t_ventana_ms, ventana, label="Ventana de voz")
+            if len(peaks) > 0:
+                plt.plot(t_ventana_ms[peaks], ventana[peaks], 'ro', label="Picos detectados")
+            plt.xlabel("Tiempo dentro de la ventana (ms)")
+            plt.ylabel("Amplitud")
+            plt.title(f"{titulo} | Ventana desde {t_inicio_ms} ms hasta {t_inicio_ms + duracion_ms} ms")
+            plt.grid(True)
+            plt.legend()
+            plt.show()
+
+        return {
+            "Señal": titulo,
+            "Inicio ventana (ms)": t_inicio_ms,
+            "Duración ventana (ms)": duracion_ms,
+            "Número de picos": len(peaks),
+            "Ti (ms)": [],
+            "Periodo medio (ms)": np.nan,
+            "Jitter absoluto (s)": np.nan,
+            "Jitter relativo (%)": np.nan,
+           
+        }
+
+    Ti_s = np.diff(peaks) / fs
+    Ti_ms = Ti_s * 1000
+
+   
+    diferencias_periodos = np.abs(np.diff(Ti_s))
+    jitter_abs_s = np.mean(diferencias_periodos)
+
+
+    T_promedio_s = np.mean(Ti_s)
+    jitter_rel_pct = (jitter_abs_s / T_promedio_s) * 100
+
+  
+    if graficar:
+        plt.figure(figsize=(10, 4))
+        plt.plot(t_ventana_ms, ventana, label="Ventana de voz")
+        plt.plot(t_ventana_ms[peaks], ventana[peaks], 'ro', label="Picos detectados")
+        plt.xlabel("Tiempo dentro de la ventana (ms)")
+        plt.ylabel("Amplitud")
+        plt.title(f"{titulo} | Ventana desde {t_inicio_ms} ms hasta {t_inicio_ms + duracion_ms} ms")
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
+    return {
+        "Señal": titulo,
+        "Inicio ventana (ms)": t_inicio_ms,
+        "Duración ventana (ms)": duracion_ms,
+        "Número de picos": len(peaks),
+        "Ti (ms)": Ti_ms.tolist(),
+        "Periodo medio (ms)": np.mean(Ti_ms),
+        "Jitter absoluto (s)": jitter_abs_s,
+        "Jitter relativo (%)": jitter_rel_pct,
+       
+    }
+
+
+
+resultados_completos = []
+
+for nombre, signal, fs in seniales:
+    resultado = calcular_jitter_ventana(
+        signal=signal,
+        fs=fs,
+        t_inicio_ms=inicios_ms[nombre],
+        duracion_ms=duracion_ms,
+        titulo=nombre,
+        graficar=True
+    )
+
+    resultados_completos.append(resultado)
+
+tabla_final = pd.DataFrame([
+    {
+        "Señal": res["Señal"],
+        "Inicio ventana (ms)": res["Inicio ventana (ms)"],
+        "Duración ventana (ms)": res["Duración ventana (ms)"],
+        "Número de picos": res["Número de picos"],
+        "Periodo medio (ms)": res["Periodo medio (ms)"],
+        "Jitter absoluto (s)": res["Jitter absoluto (s)"],
+        "Jitter relativo (%)": res["Jitter relativo (%)"],
+       
+    }
+    for res in resultados_completos
+])
+
+print("\nTABLA FINAL")
+print(tabla_final)
+```
+ RESULTADOS DE JITTER
+
+
+ Código con el que se calculó shimmer:
+
+ ```
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.signal import find_peaks
+
+inicios_ms = {
+    "Señal 1": 4990,
+    "Señal 2": 2000,
+    "Señal 3": 2000,
+    "Señal 4": 2600,
+    "Señal 5": 5850,
+    "Señal 6": 3600
+}
+
+duracion_ms = 30
+
+distancias_minimas_ms = {
+    "Señal 1": 4.2,
+    "Señal 2": 4.2,
+    "Señal 3": 4.2,
+    "Señal 4": 6.5,
+    "Señal 5": 7.0,
+    "Señal 6": 7.5
+}
+
+
+def calcular_shimmer_ventana(signal, fs, t_inicio_ms, duracion_ms, distancia_min_ms, titulo, graficar=True):
+    n_inicio = int((t_inicio_ms / 1000) * fs)
+    n_fin = int(((t_inicio_ms + duracion_ms) / 1000) * fs)
+
+    if n_inicio < 0 or n_fin > len(signal):
+        return {
+            "Señal": titulo,
+            "Inicio ventana (ms)": t_inicio_ms,
+            "Duración ventana (ms)": duracion_ms,
+            "Número de picos": 0,
+            "Ai": [],
+            "Amplitud media": np.nan,
+            "Shimmer absoluto": np.nan,
+            "Shimmer relativo (%)": np.nan,
+            "Mensaje": "La ventana se sale de la señal"
+        }
+
+    ventana = signal[n_inicio:n_fin]
+    t_ventana_ms = np.arange(len(ventana)) * 1000 / fs
+
+    rango_amp = np.max(ventana) - np.min(ventana)
+    distancia_min_muestras = int((distancia_min_ms / 1000) * fs)
+    prominencia_min = 0.20 * rango_amp
+    altura_min = np.mean(ventana)
+
+    peaks, props = find_peaks(
+        ventana,
+        distance=distancia_min_muestras,
+        prominence=prominencia_min,
+        height=altura_min
+    )
+
+    if graficar:
+        plt.figure(figsize=(10, 4))
+        plt.plot(t_ventana_ms, ventana, label="Ventana de voz")
+        if len(peaks) > 0:
+            plt.plot(t_ventana_ms[peaks], ventana[peaks], 'ro', label="Picos detectados")
+        plt.xlabel("Tiempo dentro de la ventana (ms)")
+        plt.ylabel("Amplitud")
+        plt.title(f"{titulo} | Ventana desde {t_inicio_ms} ms hasta {t_inicio_ms + duracion_ms} ms")
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
+    if len(peaks) < 3:
+        return {
+            "Señal": titulo,
+            "Inicio ventana (ms)": t_inicio_ms,
+            "Duración ventana (ms)": duracion_ms,
+            "Número de picos": len(peaks),
+            "Ai": [],
+            "Amplitud media": np.nan,
+            "Shimmer absoluto": np.nan,
+            "Shimmer relativo (%)": np.nan,
+            "Mensaje": "No hay suficientes picos para calcular shimmer"
+        }
+
+    # Amplitudes de los picos Ai
+    Ai = ventana[peaks]
+
+    # Shimmer absoluto
+    shimmer_abs = np.mean(np.abs(np.diff(Ai)))
+
+    # Shimmer relativo (%)
+    A_prom = np.mean(Ai)
+    shimmer_rel = (shimmer_abs / A_prom) * 100
+
+    return {
+        "Señal": titulo,
+        "Inicio ventana (ms)": t_inicio_ms,
+        "Duración ventana (ms)": duracion_ms,
+        "Número de picos": len(peaks),
+        "Ai": Ai.tolist(),
+        "Amplitud media": A_prom,
+        "Shimmer absoluto": shimmer_abs,
+        "Shimmer relativo (%)": shimmer_rel,
+        "Mensaje": "Cálculo exitoso"
+    }
+
+resultados_shimmer = []
+
+for nombre, signal, fs in seniales:
+    resultado = calcular_shimmer_ventana(
+        signal=signal,
+        fs=fs,
+        t_inicio_ms=inicios_ms[nombre],
+        duracion_ms=duracion_ms,
+        distancia_min_ms=distancias_minimas_ms[nombre],
+        titulo=nombre,
+        graficar=True
+    )
+    resultados_shimmer.append(resultado)
+
+
+
+tabla_shimmer = pd.DataFrame([
+    {
+        "Señal": res["Señal"],
+        "Inicio ventana (ms)": res["Inicio ventana (ms)"],
+        "Duración ventana (ms)": res["Duración ventana (ms)"],
+        "Número de picos": res["Número de picos"],
+        "Amplitud media": res["Amplitud media"],
+        "Shimmer absoluto": res["Shimmer absoluto"],
+        "Shimmer relativo (%)": res["Shimmer relativo (%)"],
+        "Mensaje": res["Mensaje"]
+    }
+    for res in resultados_shimmer
+])
+
+print("\nTABLA FINAL SHIMMER")
+print(tabla_shimmer)
+```
+
+
+
+
+
 
 
 ## Parte C 
