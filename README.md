@@ -200,7 +200,7 @@ Inicialmente, se seleccionó una grabación de voz masculina y una femenina obte
 <img width="638" height="624" alt="image" src="https://github.com/user-attachments/assets/b945bc4b-07e0-4424-ab68-42757d204d66" />
 
 el codigo del filtro
-```
+```python
 
 
 import numpy as np
