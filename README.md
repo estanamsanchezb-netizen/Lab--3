@@ -573,6 +573,9 @@ RESULTADOS:
 <br>
 <img width="548" height="248" alt="image" src="https://github.com/user-attachments/assets/dd3bf81c-c614-4a49-93d7-971e7d4c8571" />
 
+<br>
+<img width="197" height="659" alt="image" src="https://github.com/user-attachments/assets/7b80a265-4f8f-4b2a-9451-9c32b9b9ef16" />
+
 
 ## Parte C 
 1. ¿Qué diferencias se observan en la frecuencia fundamental?
