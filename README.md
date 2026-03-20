@@ -259,6 +259,13 @@ En cuanto al brillo y la frecuencia media, no se observa una diferencia tan marc
 Sin embargo, en la intensidad (energía) sí se nota que algunas voces masculinas alcanzan valores más altos (como 7.31e+12), en comparación con las femeninas, que en general presentan valores menores. Esto puede deberse a una mayor potencia vocal o volumen al momento de la grabación.
 
 3. Redactar conclusiones sobre el comportamiento de la voz en hombres y mujeres a partir de los análisis realizados.
+
+A partir de los análisis realizados, se concluye que las principales diferencias entre las voces masculinas y femeninas se evidencian en la frecuencia fundamental, siendo generalmente mayor en las mujeres, lo cual coincide con las características fisiológicas de las cuerdas vocales.
+
+En cuanto a la estabilidad de la señal, evaluada mediante los parámetros de jitter y shimmer, se observa que la mayoría de las grabaciones presentan valores relativamente bajos, lo que indica una vibración estable y regular de las cuerdas vocales. Sin embargo, existen algunas variaciones entre las señales, como valores de jitter relativo que alcanzan aproximadamente 1.64% y valores de shimmer relativo cercanos al 7.74%, lo que sugiere que ciertas muestras presentan mayor inestabilidad en frecuencia y amplitud.
+
+Estas diferencias no muestran una separación clara entre voces masculinas y femeninas, sino que parecen depender más de factores individuales como la forma de emisión de la voz, el control vocal o posibles variaciones durante la grabación.
+
 4. Discuta la importancia clínica del jitter y shimmer en el análisis de la voz. 
 
 El jitter y el shimmer son parámetros fundamentales en el análisis clínico de la voz, ya que permiten evaluar la estabilidad de la vibración de las cuerdas vocales. El jitter mide las variaciones en la frecuencia fundamental entre ciclos consecutivos, mientras que el shimmer evalúa las variaciones en la amplitud de la señal vocal.
