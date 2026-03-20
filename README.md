@@ -159,7 +159,7 @@ def caracteristicas(señal, fs):
     fmedia = np.sum(freqs * espectro) / np.sum(espectro)
 
     # c) Brillo (igual que centroide espectral aquí)
-    brillo = fmedia / (fs/2)
+    brillo = fmedia
 
     # d) Intensidad (energía)
     energia = np.sum(señal.astype(float)**2)
@@ -186,7 +186,8 @@ for nombre, s, fs in seniales:
     print(f"  Brillo:                 {brillo:.2f} Hz")
     print(f"  Intensidad (energía):   {energia:.2e}\n")
 ```
-<img width="240" height="389" alt="image" src="https://github.com/user-attachments/assets/29b6e37b-00ee-4f85-89bb-34436b89d050" />
+<img width="344" height="523" alt="image" src="https://github.com/user-attachments/assets/fd0dc519-1fde-4654-aa85-0f59a1024ea2" />
+
 <br>
 <img width="213" height="895" alt="image" src="https://github.com/user-attachments/assets/4e54b87c-7fc1-413d-9795-0ff728e4b3f7" />
 
