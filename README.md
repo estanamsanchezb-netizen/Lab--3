@@ -4,5 +4,87 @@
 En esta práctica de laboratorio se trabajaron conceptos fundamentales del procesamiento de señales aplicados al análisis de la voz humana. En primer lugar, se realizaron grabaciones de voz de tres mujeres y tres hombres, asegurando condiciones similares de muestreo. Posteriormente, se aplicó la Transformada de Fourier para representar las señales en el dominio de la frecuencia y analizar su espectro. A partir de este análisis, se calcularon parámetros como el brillo, la intensidad, el jitter y el shimmer. Finalmente, se compararon los resultados entre voces masculinas y femeninas, identificando sus principales diferencias.
 
 ## Parte A
+Se realizó la grabación de la voz de tres mujeres y tres hombres, quienes pronunciaron la misma frase: “Si hay una cosa que nadie ha podido comprar con dinero, ésa es el movimiento de la cola de un perro”. Cada archivo fue guardado en formato .wav con su respectiva identificación. Posteriormente, las señales fueron importadas a Python para ser graficadas en el dominio del tiempo. Luego, se aplicó la Transformada de Fourier con el fin de analizar el contenido frecuencial de cada señal. Finalmente, se calcularon parámetros como la frecuencia fundamental, la frecuencia media, el brillo y la intensidad.
+
+**Graficado de la señales**
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.io import wavfile
+
+# mujeres
+fs1,signal1=  wavfile.read('/content/Mujer-1.m4a.wav')
+fs2,signal2=  wavfile.read('/content/Mujer-2.m4a.wav')
+fs3,signal3=  wavfile.read('/content/Mujer-3.m4a.wav')
+
+# Hombres
+fs4,signal4=  wavfile.read('/content/Hombre-1.m4a_1.wav')
+fs5,signal5= wavfile.read('/content/Hombre-2.m4a.wav')
+fs6,signal6= wavfile.read('/content/Hombre-3.m4a.wav')
+
+
+duracion = len(signal1)/fs1
+
+duracion = len(signal2)/fs1
+
+duracion = len(signal3)/fs1
+
+
+
+duracion = len(signal4)/fs1
+
+duracion = len(signal5)/fs1
+
+duracion = len(signal6)/fs1
+
+
+Tiempo1 = np.arange(len(signal1)) / fs1
+Tiempo2 = np.arange(len(signal2)) / fs2
+Tiempo3 = np.arange(len(signal3)) / fs3
+Tiempo4 = np.arange(len(signal4)) / fs4
+Tiempo5 = np.arange(len(signal5)) / fs5
+Tiempo6 = np.arange(len(signal6)) / fs6
+fig, axs = plt.subplots(6,1, figsize=(14,10),sharex=False)
+
+print(len(Tiempo3),len(signal3))
+
+# graficas
+axs[0].plot(Tiempo1, signal1, color='hotpink')
+axs[0].set_title("Mujer 1")
+axs[0].set_ylabel('Bits')
+axs[0].set_xlabel('Tiempo (s)')
+
+axs[1].plot(Tiempo2, signal2,color='deeppink')
+axs[1].set_title("Mujer 2")
+axs[1].set_ylabel('Bits')
+axs[1].set_xlabel('Tiempo (s)')
+
+axs[2].plot(Tiempo3, signal3, color='mediumvioletred')
+axs[2].set_title("Mujer 3")
+axs[2].set_ylabel('Bits')
+axs[2].set_xlabel('Tiempo (s)')
+
+axs[3].plot(Tiempo4, signal4, color='mediumpurple')
+axs[3].set_title("Hombre 1")
+axs[3].set_ylabel('Bits')
+axs[3].set_xlabel('Tiempo (s)')
+
+axs[4].plot(Tiempo5, signal5, color='mediumslateblue')
+axs[4].set_title("Hombre 2")
+axs[4].set_ylabel('Bits')
+axs[4].set_xlabel('Tiempo (s)')
+
+axs[5].plot(Tiempo6, signal6, color='rebeccapurple')
+axs[5].set_title("Hombre 3")
+axs[5].set_ylabel('Bits')
+axs[5].set_xlabel('Tiempo (s)')
+
+plt.tight_layout()
+plt.show()
+```
+<img width="953" height="616" alt="image" src="https://github.com/user-attachments/assets/91c5f562-bfea-42d9-b600-a0bee891e0a6" />
+
+**Aplicación de la Transformada de Fourier**
 ## Parte B
 ## Parte C 
