@@ -252,7 +252,7 @@ plt.show()
 Se calculó para todas las señales Jitter con una ventana de 15 ms y Shimmer con una ventana de 30 ms
 
 Codido Jitter:
-````
+````python
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -411,12 +411,18 @@ print("\nTABLA FINAL")
 print(tabla_final)
 ````
 RESULTADOS:
-
+<img width="663" height="492" alt="image" src="https://github.com/user-attachments/assets/7311365b-1b27-4c3f-b781-02072b201d50" />
+<br>
+<img width="687" height="489" alt="image" src="https://github.com/user-attachments/assets/6d999668-9e32-4684-9a95-7de652a0490d" />
+<br>
+<img width="734" height="486" alt="image" src="https://github.com/user-attachments/assets/3bfbbe8d-d066-4698-bc68-bdc266f7f657" />
+<br>
+<img width="622" height="245" alt="image" src="https://github.com/user-attachments/assets/92f0a78a-ebaf-4c82-8acf-1a1a64f3969d" />
 
 
 Codigo Shimmer:
 
-````
+````python
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
