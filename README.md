@@ -194,7 +194,8 @@ for nombre, s, fs in seniales:
 ## Parte B
 ## Parte C 
 1. ¿Qué diferencias se observan en la frecuencia fundamental?
-Se observa que, en general, las voces femeninas presentan una frecuencia fundamental mayor que las voces masculinas. Por ejemplo, las mujeres registraron valores alrededor de 236–238 Hz, mientras que los hombres presentan valores más bajos como 203 Hz y 95 Hz. Esto es consistente con la teoría, ya que las cuerdas vocales de las mujeres suelen ser más cortas y vibran a mayor frecuencia. Sin embargo, se presentan algunos valores atípicos en ambas poblaciones (como 512 Hz en mujeres y 470 Hz en hombres), los cuales pueden deberse a variaciones en la pronunciación o errores en la medición.
+2. 
+Se observa que en general, las voces femeninas presentan una frecuencia fundamental mayor que las voces masculinas. las mujeres registraron valores alrededor de 236–238 Hz, mientras que los hombres presentan valores más bajos como 203 Hz y 95 Hz. Esto es consistente con la teoría, ya que las cuerdas vocales de las mujeres suelen ser más cortas y vibran a mayor frecuencia. Sin embargo, se presentan algunos valores atípicos en ambas poblaciones (como 512 Hz en mujeres y 470 Hz en hombres), los cuales pueden deberse a variaciones en la pronunciación o errores en la medición.
 
 3. ¿Qué otras diferencias notan en términos de brillo, media o intensidad?
 4. Redactar conclusiones sobre el comportamiento de la voz en hombres y mujeres a partir de los análisis realizados.
