@@ -199,6 +199,52 @@ Inicialmente, se seleccionó una grabación de voz masculina y una femenina obte
 
 <img width="638" height="624" alt="image" src="https://github.com/user-attachments/assets/b945bc4b-07e0-4424-ab68-42757d204d66" />
 
+el codigo del filtro
+```
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import butter, filtfilt
+
+# Función filtro pasa-banda
+def filtro_pasabanda(x, fs, lowcut, highcut):
+    nyq = 0.5 * fs
+    low = lowcut / nyq
+    high = highcut / nyq
+    b, a = butter(3, [low, high], btype='band')  
+    return filtfilt(b, a, x)
+
+# Mujer 3 (150–500 Hz)
+mujer1_filtrada = filtro_pasabanda(signal1, fs1, 150, 500)
+mujer2_filtrada = filtro_pasabanda(signal2, fs2, 150, 500)
+mujer3_filtrada = filtro_pasabanda(signal3, fs3, 150, 500)
+
+# Hombre 3 (80–400 Hz)
+hombre1_filtrada = filtro_pasabanda(signal4, fs6, 80, 450)
+hombre2_filtrada = filtro_pasabanda(signal5, fs5, 80, 400)
+hombre3_filtrada = filtro_pasabanda(signal6, fs6, 80, 400)
+
+# Graficar resultados
+plt.figure(figsize=(12,6))
+
+plt.subplot(2,1,1)
+plt.plot(signal1, label="Original")
+plt.plot(mujer1_filtrada, label="Filtrada")
+plt.title("Mujer 1 (150–500 Hz)")
+plt.legend()
+
+plt.subplot(2,1,2)
+plt.plot(signal4, label="Original")
+plt.plot(hombre1_filtrada, label="Filtrada")
+plt.title("Hombre 1 (80–400 Hz)")
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+
+```
+
 
 ## Parte C 
 1. ¿Qué diferencias se observan en la frecuencia fundamental?
