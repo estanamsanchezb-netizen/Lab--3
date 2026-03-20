@@ -195,6 +195,11 @@ for nombre, s, fs in seniales:
 ## Parte B
 Inicialmente, se seleccionó una grabación de voz masculina y una femenina obtenidas previamente. A cada señal se le aplicó un filtro pasa-banda en el rango de frecuencia de la voz, específicamente de 80–400 Hz para hombres y de 150–500 Hz para mujeres, con el fin de eliminar el ruido no deseado y conservar únicamente las componentes relevantes de la señal vocal. Posteriormente, se llevó a cabo la medición del jitter, que permite analizar las variaciones en la frecuencia fundamental entre ciclos consecutivos, mediante la detección de los periodos de vibración de la señal. De igual forma, se calculó el shimmer, que evalúa las variaciones en la amplitud, identificando los picos de cada ciclo.
 
+<img width="527" height="544" alt="image" src="https://github.com/user-attachments/assets/95d5c2ff-3740-4a7c-9dd6-3f14d1361686" />
+
+<img width="638" height="624" alt="image" src="https://github.com/user-attachments/assets/b945bc4b-07e0-4424-ab68-42757d204d66" />
+
+
 ## Parte C 
 1. ¿Qué diferencias se observan en la frecuencia fundamental?
  
