@@ -135,6 +135,61 @@ plt.show()
 
 <img width="829" height="620" alt="image" src="https://github.com/user-attachments/assets/b3422fbb-9ce3-4371-b5d1-0b0a4f12387f" />
 
+**Características de la señal**
+
+```python
+import numpy as np
+
+def caracteristicas(señal, fs):
+    # Si es estéreo, convertir a mono
+    if señal.ndim > 1:
+        señal = señal.mean(axis=1)
+
+    # FFT solo en frecuencias positivas
+    N = len(señal)
+    freqs = np.fft.rfftfreq(N, 1/fs)
+    espectro = np.abs(np.fft.rfft(señal))
+
+    # a) Frecuencia fundamental = primer pico distinto de DC (descartamos muy bajas)
+    espectro[0] = 0  # quitar DC
+    idx = np.argmax(espectro)  # máximo pico del espectro
+    Frecuencia = freqs[idx]
+
+    # b) Frecuencia media (centroide espectral)
+    fmedia = np.sum(freqs * espectro) / np.sum(espectro)
+
+    # c) Brillo (igual que centroide espectral aquí)
+    brillo = fmedia / (fs/2)
+
+    # d) Intensidad (energía)
+    energia = np.sum(señal.astype(float)**2)
+
+    return Frecuencia, fmedia, brillo, energia
+
+
+# --- Lista de señales ya cargadas ---
+seniales = [
+    ("Mujer 1", signal1, fs1),
+    ("Mujer 2", signal2, fs2),
+    ("Mujer 3", signal3, fs3),
+    ("Hombre 1", signal4, fs4),
+    ("Hombre 2", signal5, fs5),
+    ("Hombre 3", signal6, fs6)
+]
+
+# --- Calcular y mostrar resultados ---
+for nombre, s, fs in seniales:
+    Frecuencia, fmedia, brillo, energia = caracteristicas(s, fs)
+    print(f"{nombre}:")
+    print(f"  Frecuencia fundamental: {Frecuencia:.2f} Hz")
+    print(f"  Frecuencia media:       {fmedia:.2f} Hz")
+    print(f"  Brillo:                 {brillo:.2f} Hz")
+    print(f"  Intensidad (energía):   {energia:.2e}\n")
+```
+<img width="240" height="389" alt="image" src="https://github.com/user-attachments/assets/29b6e37b-00ee-4f85-89bb-34436b89d050" />
+
+<img width="213" height="895" alt="image" src="https://github.com/user-attachments/assets/4e54b87c-7fc1-413d-9795-0ff728e4b3f7" />
+
 
 ## Parte B
 ## Parte C 
