@@ -207,3 +207,8 @@ Sin embargo, en la intensidad (energía) sí se nota que algunas voces masculina
 
 3. Redactar conclusiones sobre el comportamiento de la voz en hombres y mujeres a partir de los análisis realizados.
 4. Discuta la importancia clínica del jitter y shimmer en el análisis de la voz. 
+El jitter y el shimmer son parámetros fundamentales en el análisis clínico de la voz, ya que permiten evaluar la estabilidad de la vibración de las cuerdas vocales. El jitter mide las variaciones en la frecuencia fundamental entre ciclos consecutivos, mientras que el shimmer evalúa las variaciones en la amplitud de la señal vocal.
+
+En general, valores bajos de jitter y shimmer indican una vibración estable y regular de las cuerdas vocales, lo cual es característico de una voz sana. Por el contrario, valores elevados pueden estar asociados con alteraciones vocales, como disfonías o patologías que afectan el control y la calidad de la voz.
+
+En el contexto clínico y biomédico, el análisis de jitter y shimmer es esencial para evaluar la calidad vocal, detectar trastornos de fonación, monitorear procesos terapéuticos y complementar el diagnóstico de alteraciones de la voz, ya que reflejan directamente la estabilidad vibratoria y la eficiencia de las cuerdas vocales.
